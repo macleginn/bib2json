@@ -74,3 +74,10 @@ not support pretty printing, and we use jq for that):
   "cite-key": "stevens1989quantal"
 }
 ```
+
+## Installation
+
+A static binary compiled under 64-bit Ubuntu is provided
+in the `bin` directory. Binaries for macOS and Windows 
+will be added after additional testing. You can also compile
+from source using a recent Chicken Scheme compiler.
