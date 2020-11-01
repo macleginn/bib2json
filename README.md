@@ -41,7 +41,7 @@ String concatenation is supported.
 }
 ```
 
-this is the output of using the program (the defaul Chicken JSON egg does
+this is the output of using the program (the default Chicken JSON egg does
 not support pretty printing, and we use jq for that):
 
 ```bash
