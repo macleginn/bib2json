@@ -16,12 +16,23 @@
 ;;; parse-bibtex-record: String -> HashTable(String, SchemeValue)
 ;;; usage: (parse-bibtex-record) parses an individual record into the
 ;;; following representation (in JSON notation):
-;;; { "type": "book"|"article"|"incollection", &c
-;;;     "description": {
-;;;         "key": ..., "author": ... } }
+;;; {
+;;;   "cite-key": "stevens1989quantal",
+;;;   "entry-type": "article",
+;;;   "description": {
+;;;     "author": "Stevens, Kenneth N.",
+;;;     "publisher": "Elsevier",
+;;;     "journal": "Journal of Phonetics",
+;;;     "volume": "17",
+;;;     "year": "1989",
+;;;     "pages": "3--45",
+;;;     "title": "On the quantal nature of speech",
+;;;     "number": "1-2"
+;;;   }
+;;; }
 ;;; In the current package, the records to parse will be extracted
 ;;; using get-bibtex-entry and are well-formed as regards
-;;; the outer syntax (i.e. they are of the form @TYPE{} or @TYPE())
+;;; the outer syntax, i.e. they are of the form @TYPE{} or @TYPE()
 ;;; and have balanced curly braces inside them. The procedure therefore 
 ;;; assumes that the prefix is well-formed. It also strips the final } or )
 (define parse-bibtex-record
@@ -424,7 +435,8 @@
 		   inside-quotes
 		   #f)]
 	    [(and (eqv? c #\@)		; This symbol cannot appear inside a record
-		                        ; but not inside a field.
+		                        ; without being inside a string.
+		  (not inside-quotes)
 		  (eqv? embedding-level 1))
 	     (error (format "An erroneus @ inside a record or an incomplete record:~%~S"
 			    (reverse-list->string (cons c res))))]
