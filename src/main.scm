@@ -437,6 +437,7 @@
 	    [(and (eqv? c #\@)		; This symbol cannot appear inside a record
 		                        ; without being inside a string.
 		  (not inside-quotes)
+		  (not (eqv? outer-delimiter #\())
 		  (eqv? embedding-level 1))
 	     (error (format "An erroneus @ inside a record or an incomplete record:~%~S"
 			    (reverse-list->string (cons c res))))]
