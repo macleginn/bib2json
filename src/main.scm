@@ -14,16 +14,16 @@
 
 
 ;;; parse-bibtex-record: String -> HashTable(String, SchemeValue)
-;;; usage: (parse-bibtex-record) parses an individual record into the following
-;;; representation (in JSON notation):
+;;; usage: (parse-bibtex-record) parses an individual record into the
+;;; following representation (in JSON notation):
 ;;; { "type": "book"|"article"|"incollection", &c
 ;;;     "description": {
 ;;;         "key": ..., "author": ... } }
 ;;; In the current package, the records to parse will be extracted
 ;;; using get-bibtex-entry and are well-formed as regards
-;;; the outer syntax (are of the form @TYPE{} or @TYPE()) and have balanced
-;;; curly braces inside them. The procedure therefore assumes that
-;;; the prefix is well-formed and also strips the final } or )
+;;; the outer syntax (i.e. they are of the form @TYPE{} or @TYPE())
+;;; and have balanced curly braces inside them. The procedure therefore 
+;;; assumes that the prefix is well-formed. It also strips the final } or )
 (define parse-bibtex-record
   (lambda (str)
     (call-with-input-string
