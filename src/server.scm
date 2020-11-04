@@ -27,11 +27,9 @@
 	   (get-bibtex-records input-text)
 	   port))))))
 
-;;; get-body: Port -> JSON Object
-;;; usage (get-body port) reads from the port until it encounters an
-;;; eof-object and returns the collected string. As this
-;;; method will not be exposed as a public API endpoint
-;;; we do not care about security: Nginx will take care of this.
+;;; get-body: Port x Integer -> String
+;;; usage (get-body port content-length) reads the
+;;; body of the request from the port.
 (define get-body
   (lambda (port content-length)
     (let loop ([res '()]
