@@ -45,34 +45,36 @@ this is the output of using the program (the default Chicken JSON egg does
 not support pretty printing, and we use jq for that):
 
 ```bash
-➜  src git:(main) ✗ cat test.bib | ./main | jq
-{
-  "description": {
-    "month": "September",
-    "year": "2019",
-    "title": "{Australian phonemic inventories contributed to\n PHOIBLE 2.0: Essential explanatory notes}",
-    "doi": "10.5281/zenodo.3464333",
-    "url": "https://doi.org/10.5281/zenodo.3464333",
-    "author": "Round, Erich"
+cat test.bib | ../bin/bib2json | jq
+[
+  {
+    "cite-key": "round2019",
+    "entry-type": "manual",
+    "description": {
+      "url": "https://doi.org/10.5281/zenodo.3464333",
+      "month": "September",
+      "year": "2019",
+      "author": "Round, Erich",
+      "doi": "10.5281/zenodo.3464333",
+      "title": "{Australian phonemic inventories contributed to\n PHOIBLE 2.0: Essential explanatory notes}"
+    }
   },
-  "entry-type": "manual",
-  "cite-key": "round2019"
-}
-{
-  "description": {
-    "month": "unknown",
-    "publisher": "Elsevier",
-    "volume": "17",
-    "year": "1989",
-    "number": "1-2",
-    "pages": "3--45",
-    "journal": "Journal of Phonetics",
-    "title": "On the quantal nature of speech",
-    "author": "Stevens, Kenneth N."
-  },
-  "entry-type": "article",
-  "cite-key": "stevens1989quantal"
-}
+  {
+    "cite-key": "stevens1989quantal",
+    "entry-type": "article",
+    "description": {
+      "publisher": "Elsevier",
+      "number": "1-2",
+      "journal": "Journal of Phonetics",
+      "volume": "17",
+      "year": "1989",
+      "title": "On the quantal nature of speech",
+      "month": "unknown",
+      "author": "Stevens, Kenneth N.",
+      "pages": "3--45"
+    }
+  }
+]
 ```
 
 ## Installation
