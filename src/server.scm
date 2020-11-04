@@ -1,6 +1,7 @@
 (declare (uses bibtex-parse))
 
-(import (chicken io)
+(import 
+	(chicken io)
 	(chicken format)
 	(chicken string)
 	(chicken port)
@@ -9,8 +10,6 @@
 	intarweb
 	uri-common
 	json)
-
-(server-port 41000)
 
 ;;; process-input: Port x Integer -> String
 ;;; usage: (process-input port content-length) reads the input from
@@ -58,6 +57,7 @@
 				       (content-type "application/json")))))
 	  (continue)))))
 
+(server-port 41000)
 (vhost-map `(("localhost" . ,parse-input)))
 
 (start-server)
